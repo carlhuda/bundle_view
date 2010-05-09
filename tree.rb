@@ -1,20 +1,31 @@
 require "rubygems"
 require "bundler"
-require 'ap'
+require "graphviz"
+
 
 ENV['BUNDLE_GEMFILE'] = '/Users/kevin/tpl/Gemfile'
 
-# all explicitly required dependencies
-#puts Bundler.definition.dependencies
-
-rails = Bundler.definition.dependencies[0]
-
-# all specs for all required gems
-# these are of type gem specification
 all_specs = Bundler.runtime.specs.to_a
 
-all_specs.each do |s|
-  puts s.full_name
-  puts "  #{s.runtime_dependencies}"
 
+g = GraphViz::new( "G" )
+
+nodes = {}
+
+all_specs.each do |s|
+  nodes[s.name] = g.add_node(s.name)
 end
+
+all_specs.each do |s|
+  
+  from = nodes[s.name]
+  
+  s.runtime_dependencies.each do |d|
+    to = nodes[d.name]
+    g.add_edge( from, to )
+    
+  end
+  
+end
+
+g.output( :png => "test.png" )
