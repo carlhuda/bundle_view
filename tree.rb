@@ -80,5 +80,5 @@ Bundler.runtime.specs.each do |s|
 
 end
 
-# You can do :svg => "file.svg" here, etc.
-graph.output( :png => "Gemfile.png" )
+# You can do output(:png => "file.png") here, etc.
+graph.output( :svg => "Gemfile.svg" )

@@ -3,7 +3,7 @@
 I have grand aspirations for this code.
 For now: silly simple.
 
-![sample output](http://github.com/kevmoo/bundle_view/raw/master/sample_output-rails_app.png)
+![sample output](http://github.com/kevmoo/bundle_view/raw/master/sample_output-rails_app.svg)
 
 ## Prerequisites ##
 
