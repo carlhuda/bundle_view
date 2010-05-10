@@ -19,6 +19,9 @@ Either copy this file into a dir with a Gemfile or set the Gemfile path manually
 
 ## What you'll see ##
 
+* Blue nodes: explicit requires from the Gemfile
+* Grouped dependencies in boxes (unless a dependency is in many non-default groups, GraphViz doesn't handle this)
+* Rectangle nodes: System Gems
 
 ## Future ##
 
