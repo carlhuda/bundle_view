@@ -2,7 +2,7 @@ require "rubygems"
 require "bundler"
 require "graphviz"
 
-ENV['BUNDLE_GEMFILE'] = '~/tpl/Gemfile' #set to a Gemfile path if you don't run this in a directory with a Gemfile
+#ENV['BUNDLE_GEMFILE'] = set to a Gemfile path if you don't run this in a directory with a Gemfile
 
 FONT_NAME = 'Arial'
 
