@@ -2,10 +2,13 @@ require "rubygems"
 require "bundler"
 require "graphviz"
 
-# ENV['BUNDLE_GEMFILE'] = "set to a Gemfile path if you don't run this in a directory with a Gemfile"
+# ENV['BUNDLE_GEMFILE'] = set to a Gemfile path if you don't run this in a directory with a Gemfile
+
+FONT_NAME = 'Arial'
 
 graph = GraphViz::new('Gemfile')
-graph.graph[:fontname] = graph.node[:fontname] = 'Helvetica'
+graph.node[:fontname => FONT_NAME, :margin => '0.05, 0.05' ]
+graph.graph[ :dpi => 100, :size => '9,9', :nodesep => '.1']
 
 # clusters store sub-graphs that aren't default. 'test' is common, for instance.
 clusters = {}
@@ -45,7 +48,6 @@ Bundler.definition.dependencies.each do |d|
   # Add a node (with styles for a dependency) to the graph
   # and save it in our hash
   nodes[d.name] = parent.add_node(d.name, {:style => 'bold',
-    :fontname => 'Helvetica-Bold',
     :style => 'filled',
     :fillcolor => '#aaaacc'}
   )
@@ -80,5 +82,5 @@ Bundler.runtime.specs.each do |s|
 
 end
 
-# You can do output(:png => "file.png") here, etc.
-graph.output( :svg => "Gemfile.svg" )
+# You can do output(:svg => "file.svg") here, etc.
+graph.output( :png => "Gemfile.png" )
