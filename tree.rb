@@ -4,11 +4,8 @@ require "graphviz"
 
 #ENV['BUNDLE_GEMFILE'] = set to a Gemfile path if you don't run this in a directory with a Gemfile
 
-FONT_NAME = 'Arial'
-
 graph = GraphViz::new('Gemfile')
-graph.node[:fontname => FONT_NAME, :margin => '0.05, 0.05' ]
-graph.graph[ :dpi => 100, :size => '9,9', :nodesep => '.1', :bgcolor => 'transparent']
+graph.node[:fontname] = graph.graph[:fontname] = 'Helvetica'
 
 # clusters store sub-graphs that aren't default. 'test' is common, for instance.
 clusters = {}
