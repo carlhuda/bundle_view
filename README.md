@@ -3,6 +3,8 @@
 I have grand aspirations for this code.
 For now: silly simple.
 
+![Sample output](http://github.com/kevmoo/bundle_view/raw/master/sample_output-rails_app.png)
+
 ## Prerequisites ##
 
 1. [Ruby Gems](http://rubygems.org/)
