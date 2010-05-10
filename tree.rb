@@ -5,7 +5,7 @@ require "graphviz"
 ENV['BUNDLE_GEMFILE'] = '/Users/kevin/tpl/Gemfile'
 
 graph = GraphViz::new('Gemfile')
-graph.node[:fontname => 'Helvetica']
+graph.graph[:fontname] = graph.node[:fontname] = 'Helvetica'
 
 clusters = {}
 
@@ -24,22 +24,29 @@ Bundler.definition.dependencies.each do |d|
     else
       clusters[group] = parent = graph.add_graph(
         "cluster_#{group}",
-        {:label => group}
+        { :label => "Group: #{group}" }
       )
     end
   end
 
   nodes[d.name] = parent.add_node(d.name, {:style => 'bold',
-
     :fontname => 'Helvetica-Bold',
     :style => 'filled',
-    :fillcolor => '#aaaacc'})
+    :fillcolor => '#aaaacc'}
+  )
+
 end
 
-Bundler.runtime.specs.each do |s|
-  if !nodes.has_key? s.name
-    nodes[s.name] = graph.add_node(s.name)
+Bundler.runtime.specs.each do |spec|
+  name = spec.name
+  node = nil
+  if nodes.has_key? name
+    node = nodes[name]
+  else
+    node = nodes[name] = graph.add_node(name)
   end
+
+  node[:shape] = 'box' if spec.source.to_s == 'system gems'
 end
 
 
@@ -54,4 +61,5 @@ Bundler.runtime.specs.each do |s|
 
 end
 
-graph.output( :svg => "test.svg" )
+graph.output( :png => "test.png" )
+`open test.png`
